@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="parallax" style="background-image: url({{ image }});">
+  <div class="parallax-content">
+    <h1>Санкт-Петербург</h1>
+  </div>
+  <div class="mask"></div>
+</div>
+
+<div class="content">
+  <div>
+    <p>
+      Случайный факт про Петербург:
+    </p>
+    <p>
+      {{ fact }}
+    </p>
+  </div>
+</div>
+
+<div class="parallax" style="background-image: url({{ image }});">
+  <div class="parallax-content"></div>
+  <div class="mask"></div>
+</div>
+
+<div class="content">
+  <div>
+    <p>
+      {% if weather %}
+      Погода в <b>Санкт-Петербурге</b> сейчас:<br>
+      <br>
+      <b>Температура: </b>{{ weather[0] }} °C<br>
+      <b>Погода: </b>{{ weather[1] }}<br>
+      <b>Ветер: </b>{{ weather[2] }} м/с<br>
+      <b>Влажность: </b>{{ weather[3] }}%<br>
+      <br>
+      {{ rec }}
+      {% else %}
+      Не удалось загрузить погоду...
+      {% endif %}
+
+    </p>
+  </div>
+</div>
+
+<div class="parallax" style="background-image: url({{ image }});">
+  <div class="parallax-content">
+    <p>
+      Город пышный, город бедный,<br>
+      Дух неволи, стройный вид,<br>
+      Свод небес зелено-бледный,<br>
+      Скука, холод и гранит.<br>
+      <cite>А.С. Пушкин</cite>
+      <br>
+    </p>
+
+  </div>
+  <div class="mask"></div>
+</div>
+{% endblock %}

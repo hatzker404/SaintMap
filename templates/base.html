@@ -1,0 +1,42 @@
+<html>
+      <head>
+            {% if title %}
+            <title>{{ title }} - saintmap</title>
+            {% else %}
+            <title>saintmap</title>
+            {% endif %}
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/parallax.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/filter.css') }}">
+      </head>
+      <body>
+            <div class="header">
+                  <div class="tab-bar-container">
+                        <form action="/about">
+                            <input type="submit" value="О нас">
+                        </form>
+
+                        <form action="/map">
+                            <input type="submit" value="Карта">
+                        </form>
+
+                        <form action="/user">
+                            {% if username %}
+                            <input type="submit" value="{{ username }}">
+                            {% else %}
+                            <input type="submit" value="Войти">
+                            {% endif %}
+                        </form>
+                  </div>
+                  <div class="title">
+                        <form action="/welcome">
+                            <input type="submit" value="SaintMap">
+                        </form>
+                  </div>
+            </div>
+            <div class="adaptive-container">
+                {% block content %}
+                {% endblock %}
+            </div>
+      </body>
+</html>

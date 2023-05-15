@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+.parallax{
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.parallax h1 {
+    color: #ffffff;
+    font-size: 70px;
+    padding: 50px 100px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.9), 0 16px 28px rgba(0,0,0,0.9);
+    text-shadow: 0 0 20px rgba(0,0,0,0.8);
+    text-transform: uppercase;
+    font-family: 'Roboto', Tahoma, sans-serif;
+    letter-spacing: 4px;
+    backdrop-filter: blur(8px);
+}
+
+.parallax p {
+    color: #ffffff;
+    font-size: 40px;
+    padding: 50px 100px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.9), 0 16px 28px rgba(0,0,0,0.9);
+    text-shadow: 0 0 20px rgba(0,0,0,0.8);
+    font-family: 'Lobster', cursive;
+    letter-spacing: 1px;
+    line-height: 70px;
+    backdrop-filter: blur(10px);
+
+}
+
+.parallax cite {
+    float: right;
+    font-size: 30px;
+}
+.parallax cite:before {
+    content: '- ';
+}
+.parallax .mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0, 0);
+    z-index: 2;
+}
+.parallax-content {
+    z-index: 3;
+}

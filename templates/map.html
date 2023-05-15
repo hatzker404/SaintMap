@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+<input type="checkbox" id="side-checkbox" />
+<div class="side-panel">
+    <label class="close-filter-button" for="side-checkbox">
+        <svg viewBox="-15 -15 30 30" width="100" height="100" color="white">
+            <circle r="5"></circle>
+            <path d="M2,2 L-2,0 L2,-2"></path>
+        </svg>
+    </label>
+    <div class="side-title">Фильтр:</div>
+    <div class="filter-container">
+        <form action="apply_changes" method="post">
+            <p>
+                <input name="place_name" type="text" placeholder="Введите название">
+            </p>
+            <p>
+                <select name="region">
+                    <option value="">Все районы</option>
+                    <option value="Адмиралтейский">Адмиралтейский район</option>
+                    <option value="Василеостровский">Василеостровский район</option>
+                    <option value="Выборгский">Выборгский район</option>
+                    <option value="Калининский">Калининский район</option>
+                    <option value="Кировский">Кировский район</option>
+                    <option value="Колпинский">Колпинский район</option>
+                    <option value="Красногвардейский">Красногвардейский район</option>
+                    <option value="Красносельский">Красносельский район</option>
+                    <option value="Кронштадтcкий">Кронштадтcкий район</option>
+                    <option value="Курортный">Курортный район</option>
+                    <option value="Московский">Московский район</option>
+                    <option value="Невский">Невский район</option>
+                    <option value="Петроградский">Петроградский район</option>
+                    <option value="Петродворцовый">Петродворцовый район</option>
+                    <option value="Приморский">Приморский район</option>
+                    <option value="Пушкинский">Пушкинский район</option>
+                    <option value="Фрунзенский">Фрунзенский район</option>
+                    <option value="Центральный">Центральный район</option>
+                </select>
+            </p>
+            <p>
+                <select name="category">
+                    <option value="">Все категории</option>
+                    <option value="Граффити">Граффити</option>
+                    <option value="Покупки">Покупки</option>
+                    <option value="Природа">Природа</option>
+                    <option value="Музеи">Музеи</option>
+                    <option value="Волейбол">Волейбол</option>
+                </select>
+            </p>
+            <p>
+                <input type="submit" value="Применить">
+            </p>
+        </form>
+    </div>
+    <div class="side-title">Избранное:</div>
+    <div class="fav-container">
+        <form action="get_user_fav_places" method="post">
+            <p>
+                <input type="submit" value="Показать избранное" style="font-size: 25px;">
+            </p>
+        </form>
+        <form action="add_to_fav" method="post">
+            <p class="fav-container-p">Введите название объекта, который хотети добавить в избранное:</p>
+            <p>
+                <input name="new_id" type="text" placeholder="Введите название">
+            </p>
+            <p>
+                <input type="submit" value="Добавить">
+            </p>
+        </form>
+    </div>
+</div>
+<div class="open-filter-button">
+    <label class="btn" for="side-checkbox">
+        <div class="side side-open">Фильтр</div>
+    </label>
+</div>
+
+<div class="map-container">
+    {{ iframe|safe }}
+</div>
+{% endblock %}

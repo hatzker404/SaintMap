@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="parallax" style="background-image: url({{ image }});">
+    <div class="parallax-content">
+      <h1>Санкт-Петербург</h1>
+    </div>
+    <div class="mask"></div>
+</div>
+
+<div class="content">
+    <div>
+        {% if error == "1001" %}
+        <div>
+            <p>Это имя уже занято...</p>
+        </div>
+        {% endif %}
+        {% if error == "1002" %}
+        <div>
+            <p>Эта почта уже зарегистрированна...</p>
+        </div>
+        {% endif %}
+        {% if error == "1011" or error=="1012"%}
+        <div>
+            <p>Нужно заполнить все поля!</p>
+        </div>
+        {% endif %}
+        {% if error == "1003" %}
+        <div>
+            <p>Пароль должен иметь длину не менее 8 символов</p>
+        </div>
+        {% endif %}
+        <div class="signin-form">
+            <form method="post" action="signup_check">
+                <div class="signin-container">
+                    <input type="text" placeholder=" " name="username"/>
+                    <label>Имя</label>
+                </div>
+                <div class="signin-container">
+                    <input type="email" placeholder=" " name="useremail"/>
+                    <label>E-mail</label>
+                </div>
+                <div class="signin-container">
+                    <input type="password" placeholder=" " name="userpsw"/>
+                    <label>Пароль</label>
+                </div>
+                <div class="signin-container">
+                    <input type="submit" value="Зарегистрироваться" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="parallax" style="background-image: url({{ image }});">
+    <div class="parallax-content"></div>
+    <div class="mask"></div>
+</div>
+{% endblock %}
