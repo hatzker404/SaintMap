@@ -44,13 +44,14 @@ def get_places(i=0, region="", category="", name=""):
     return places
 
 
-def delete_place(place_name):
+def delete_place_from_db(place_name):
     db_sess = db_session.create_session()
     places = db_sess.query(PLACE).all()
     for place in places:
         if place.name == place_name:
             db_sess.delete(place)
             db_sess.commit()
+            return
 
 
 def add_new_user_to_db(name, email, password):
@@ -100,7 +101,6 @@ def update_user_fav_places_id(name, new_id, delete_all=False):
                 if new_id not in a:
                     user.fav_places_id = old_id + " " + new_id
                 db_sess.commit()
-
 
 
 def check_valid_signup(name, email, psw):

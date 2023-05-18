@@ -52,8 +52,17 @@ def user():
         name, email, password, fav_places_id = get_user_info(session.get("username"))
         user_fav_places = [get_places(i=int(x)) for x in fav_places_id.split()]
         for i in range(len(user_fav_places)):
-            user_fav_places[i][0][4] = url_for('static', filename='img/places/' + user_fav_places[i][0][4].split("/")[-1])
-        return render_template("user.html", username=session.get("username"), fav_places=user_fav_places, image=get_image())
+            user_fav_places[i][0][4] = url_for(
+                'static', filename='img/places/' + user_fav_places[i][0][4].split("/")[-1]
+            )
+        if session.get("username") == "admin":
+            return render_template(
+                "admin.html", username=session.get("username"), fav_places=user_fav_places, image=get_image()
+            )
+        else:
+            return render_template(
+                "user.html", username=session.get("username"), fav_places=user_fav_places, image=get_image()
+            )
     else:
         return render_template("signin.html", error=False, image=get_image())
 
@@ -113,7 +122,7 @@ def add_to_fav():
 @app.post('/get_user_fav_places')
 def get_user_fav_places():
     if request.method == "POST":
-        if session.get("isLogged"):
+        if session. get("isLogged"):
             session["fav_places"] = True
             return redirect(url_for('create_map'))
         return redirect(url_for('user'))
@@ -123,6 +132,29 @@ def get_user_fav_places():
 def delete_user_fav_places():
     if request.method == "POST":
         update_user_fav_places_id(session.get("username"), "", delete_all=True)
+        return redirect(url_for('user'))
+
+
+@app.post('/add_place_to_db')
+def add_place_to_db():
+    if request.method == "POST":
+        region = request.form["region"]
+        category = request.form["category"]
+        name = request.form["name"]
+        address = request.form["photo"]
+        photo = request.form["address"]
+        description = request.form["description"]
+        coordinates = request.form["coordinates"]
+        add_new_place_to_db(region, category, name, address, photo, description, coordinates)
+
+        return redirect(url_for('user'))
+
+
+@app.post('/delete_place')
+def delete_place():
+    if request.method == "POST":
+        name = request.form["delete_id"]
+        delete_place_from_db(name)
         return redirect(url_for('user'))
 
 
